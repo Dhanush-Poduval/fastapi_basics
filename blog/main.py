@@ -58,4 +58,10 @@ def create_user(request:schemas.User,db:Session=Depends(get_db)):
 def see_user(db:Session=Depends(get_db)):
     users=db.query(models.User).all()
     return users
+@app.get('/user/{id}',response_model=schemas.ShowUser)
+def see_specific_user(id,db:Session=Depends(get_db),):
+    users=db.query(models.User).filter(models.User.id==id).first()
+    if not users:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST , detail=f"User of {id} does not exist")
+    return users
 
