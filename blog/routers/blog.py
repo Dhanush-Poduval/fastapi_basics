@@ -11,7 +11,9 @@ from typing import List
 
 
 
-router=APIRouter()
+router=APIRouter(
+    tags=['blogs']
+)
 
 @router.get('/blog',response_model=List[schemas.ShowBlog])
 def all( db:Session=Depends(database.get_db)):

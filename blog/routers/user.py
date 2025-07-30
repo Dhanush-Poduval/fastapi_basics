@@ -4,7 +4,9 @@ from .. import schemas,models,database
 from sqlalchemy.orm import Session
 from typing import List
 from passlib.context import CryptContext
-router=APIRouter()
+router=APIRouter(
+    tags=['users']
+)
 get_db=database.get_db
 pwd_cxt=CryptContext(schemes=["bcrypt"],deprecated="auto")
 
